@@ -1,7 +1,7 @@
 # 2024 Multimedia HW2
 
 ## Prerequisites
-Make sure that you have your python and pip installed on your computer.
+Make sure that you have python and pip installed on your computer.
 
 Run
 ```bash
@@ -49,18 +49,19 @@ is used here to get the input audio data and plot it.
 
 ### Energy Contour
 The energy of a signal corresponds to the total magntiude of the signal. For audio signals, that roughly corresponds to how loud the signal is. The energy in a signal is defined as
+
 $$ \sum_n{|x[n]|}^2 $$
 
 Absolue value can be omitted since there is square.
 
-Since, we want to draw the contour, the range of x[n] shouldn't be all sample points at once. Instead, we use sums of rather small ranges of n (frames) every time and then hop.
+Since I want to draw the contour, the range of x[n] shouldn't be all sample points at once. Instead, I use sums of rather small ranges of n (frames) every time and then hop.
 
-Here we have `2048` points per frame and `512` points per.
+Here I have `2048` points per frame and `512` points per step.
 
 Equivalence code is
 ```python
 energy = array([
-    sum(x[i: i + 1024] ** 2)
+    sum(x[i: i + 2048] ** 2)
     for i in range(0, len(x), 512)
 ])
 
@@ -69,7 +70,7 @@ ax[1].plot(t, energy)
 ```
 
 ### Zero-crossing rate contour
-Here we still have `2048` points per frame and `512` points per as default.
+Here I still have `2048` points per frame and `512` points per as default.
 
 ```python
 zcr = zero_crossing_rate(x + 0.0001)[0]
@@ -144,6 +145,7 @@ ax[4].plot(t, f0)
 ### The Result
 After you run the code, you should get the result like this:
 ![](result1.png)
+
 (Run the code genuinely to get the better quality of the plots than this picture.)
 
 ## Calculate the spectrogram in Frequency Domain
