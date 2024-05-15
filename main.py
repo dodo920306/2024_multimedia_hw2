@@ -7,7 +7,7 @@ from numpy import array, mean, where, percentile, isnan, nan, median, abs, max
 from scipy.ndimage import gaussian_filter1d
 
 
-fig, ax = subplots(5, 1)
+_, ax = subplots(5, 1)
 x, sr = load(argv[1], sr=None)
 t = frames_to_time(range(len(x)), sr = sr, hop_length = 1)
 ax[0].plot(t, x)
